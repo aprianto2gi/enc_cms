@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">                    
+        <% if(messages.info) {%>
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <p><i class="icon fa fa-check"></i><%= messages.info %></p>
+        </div>
+        <% } %>
+        <div class="card-body">
+            <a href="/admin/add_product">
+                <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Produk</button>
+            </a>
+        </div>
+        
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Nama Produk</th>
+                        <th>Gambar Produk</th>
+                        <th>Harga Produk</th>
+                        <th>Deskripsi Produk</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% if(data.length) {
+                    data.forEach(function(data){
+                %>
+                <tr>
+                    <td><%= data.nama_produk %></td>
+                    <td><img src="/public/images/<%= data.gambar_produk %>" alt="User Avatar" class="img-size-50 mr-3"></td>
+                    <td>Rp. <%= data.harga_product %></td>
+                    <td><%= data.des_product.substring(0,100) %></td>
+                    <td>
+                        <a href="/admin/edit_product/<%= data.id_product %>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                        <a href="/admin/delete_product/<%= data.id_product %>" onclick="return confirm('Are you sure to delete id_product=' + <%= data.id_product %> + '?')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>                
+                <% }); } %>
+                </tbody>                
+            </table>
+        </div>
+
+        </div>
+
+    </div>
+
+</div>
